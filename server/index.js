@@ -2,8 +2,8 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 import cookieParser from 'cookie-parser'
-import apiRouter from './api'
-import query from './common/mysql/db'
+import apiRouter from './api' //api
+import query from './common/mysql/db' //数据库连接句柄
 import http from 'http'
 
 const app = express();
