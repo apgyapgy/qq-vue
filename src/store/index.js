@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as actions from './actions';
+import * as actions from '@/store/actions';
 import * as getters from './getters';
 import {state,mutations} from './mutations';
 import sidebar from './modules/sidebar';

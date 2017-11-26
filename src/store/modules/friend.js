@@ -1,5 +1,5 @@
-import * as types from '../mutation-types'
-import * as api from '@/api/friend'
+import * as types from '../mutations-types'
+import * as api from '@/api/friend.js'
 
 // state
 const state = {

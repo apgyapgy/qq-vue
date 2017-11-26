@@ -17,7 +17,7 @@
 				<p>登录即代表已阅读并同意<span>服务条款</span></p>
 			</div>
 		</div>	
-	</div
+	</div>
 </template>
 <script>
 import {mapGetters} from 'vuex'

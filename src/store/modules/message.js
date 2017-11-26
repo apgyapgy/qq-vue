@@ -1,4 +1,4 @@
-import * as types from '../mutation-types'
+import * as types from '../mutations-types'
 import * as api from '@/api/message'
 import {parseMessageTime} from '@/common/js/parse-time'
 
