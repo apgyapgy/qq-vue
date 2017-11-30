@@ -9,13 +9,13 @@ import router from './router'
 import store from './store';
 import FastClick from 'fastclick';
 import vueg from 'vueg';
-import VueResource from 'vue-resource'
+//import VueResource from 'vue-resource'
 import VueWechat from 'vue-wechat-title'
 import 'vueg/css/transition-min.css'
 
 
 Vue.config.productionTip = false
-Vue.use(VueResource);
+//Vue.use(VueResource);
 Vue.use(VueWechat);
 
 Vue.use(VueAxios,axios);
@@ -32,7 +32,7 @@ if ('addEventListener' in document) {
   }, false)
 }
 
-Vue.http.options.emulateJSON = true;
+/*Vue.http.options.emulateJSON = true;
 Vue.http.interceptors.push((request, next)  => {
   $.showLoading();
   request.jsonp = 'callback';
@@ -41,7 +41,7 @@ Vue.http.interceptors.push((request, next)  => {
   		$.hideLoading();
   	});
   });
-});
+});*/
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

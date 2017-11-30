@@ -4,7 +4,8 @@ import * as actions from '@/store/actions';
 import * as getters from './getters';
 import {state,mutations} from './mutations';
 import sidebar from './modules/sidebar';
-import warn from './modules/message';
+import warn from './modules/warn';
+import message from './modules/message';
 import friend from './modules/friend';
 import scroll from './modules/scroll';
 
