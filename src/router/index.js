@@ -13,7 +13,8 @@ const asyncComponent = (name) =>{
   return resolve => require([`@/components/${name}`],resolve);
 }
 //异步加载组件
-const Login = asyncComponent('Login/Login')
+const Login = asyncComponent('Login/Login'),
+      Register = asyncComponent('Register/Register')
 
 export default new Router({
   routes: [
@@ -30,6 +31,13 @@ export default new Router({
       component:Login,
       meta:{
         title:'登录'
+      }
+    },{
+      path:'/register',
+      name:'Register',
+      component:Register,
+      meta:{
+        title:'注册'
       }
     }
   ]
