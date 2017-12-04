@@ -29,19 +29,19 @@
 						<input type="text" ref="firstNum" v-model="code.firstNum" :class="{'fill':code.firstNum!=''}" maxlength="1" @keyup="autoFocus(0)" @touchend="autoFocus(0)" name="">
 					</li>
 					<li>
-						<input type="text" ref="secondNum" v-model="code.secondNum" :class="{fill:code.secondNum!=''}" maxlength="1" @keyup="autoFocus(1)" @touchend="sutoFocus(1)" name="">
+						<input type="text" ref="secondNum" v-model="code.secondNum" :class="{fill:code.secondNum!=''}" maxlength="1" @keyup="autoFocus(1)" @touchend="autoFocus(1)" name="">
 					</li>
 					<li>
-						<input type="text" ref="secondNum" v-model="code.thirdNum" :class="{fill:code.thirdNum!=''}" maxlength="1" @keyup="autoFocus(2)" @touchend="sutoFocus(2)" name="">
+						<input type="text" ref="thirdNum" v-model="code.thirdNum" :class="{fill:code.thirdNum!=''}" maxlength="1" @keyup="autoFocus(2)" @touchend="autoFocus(2)" name="">
 					</li>
 					<li>
-						<input type="text" ref="secondNum" v-model="code.fourthNum" :class="{fill:code.fourthNum!=''}" maxlength="1" @keyup="autoFocus(3)" @touchend="sutoFocus(3)" name="">
+						<input type="text" ref="fourthNum" v-model="code.fourthNum" :class="{fill:code.fourthNum!=''}" maxlength="1" @keyup="autoFocus(3)" @touchend="autoFocus(3)" name="">
 					</li>
 					<li>
-						<input type="text" ref="secondNum" v-model="code.fiveNum" :class="{fill:code.fiveNum!=''}" maxlength="1" @keyup="autoFocus(4)" @touchend="sutoFocus(4)" name="">
+						<input type="text" ref="fiveNum" v-model="code.fiveNum" :class="{fill:code.fiveNum!=''}" maxlength="1" @keyup="autoFocus(4)" @touchend="autoFocus(4)" name="">
 					</li>
 					<li>
-						<input type="text" ref="secondNum" v-model="code.sixNum" :class="{fill:code.sixNum!=''}" maxlength="1" @keyup="autoFocus(5)" @touchend="sutoFocus(5)" name="">
+						<input type="text" ref="sixNum" v-model="code.sixNum" :class="{fill:code.sixNum!=''}" maxlength="1" @keyup="autoFocus(5)" @touchend="autoFocus(5)" name="">
 					</li>
 				</ul>
 				<p class="left" :class="{resend:time==0}" @click="reSend">重新发送 <span v-show="time!=0">({{time}}s)</span></p>
@@ -67,7 +67,7 @@
 				<h1>注册成功</h1>
 				<div class="info">
 					<p class="ptop">你的QQ号为：</p>
-					<p class="qq">{{QQ}}</p>
+					<p class="qq">{{qq}}</p>
 					<p class="info">该QQ号与手机号码 <span>+86 {{formatPhone}}</span>绑定，你可以通过短信验证登录QQ手机版（默认密码6个1）。</p>
 					<input type="button" class="btn enable" value="登录" @click="login" name="">
 					<p class="warn">三天内未登录，该QQ号将被收回</p>
@@ -86,7 +86,7 @@
 				phone:'',//用户填写的手机号
 				nickname:'',//用户的昵称
 				qq:'',//用户分配到的qq号
-				showPage:1,//默认显示第一页
+				showPage:4,//默认显示第一页
 				time:60,//验证码剩余时间
 				code:{//验证码
 					firstNum:'',
@@ -155,29 +155,21 @@
 			showSecondPage(){
 				if(this.isEnable){
 					this.showPage = 2;//展示第二页
-					this.sendMessage();//发送验证码到用户的手机
+					//this.sendMessage();//发送验证码到用户的手机
 					this.startInterval();
 					setTimeout(()=>{
-						this.$refs.firstNum.focus()
+						this.$refs.firstNum.focus();
 					},0);
 				}
 			},
 			//[第二页]数字框自动获得焦点
-			autoFucus(index){
+			autoFocus(index){
 				const value = this.inputValue[index];
-				if(value != ''){
-					index==0?this.$refs.secondNum.focus():
-					index==1?this.$refs.thirdNum.fucus():
-					index==2?this.$refs.fourthNum.focus():
-					index==4?this.$refs.fiveNum.focus():
-					index==5?this.$refs.sixNum.focus():''
-				}else{
-					index==1?this.$refs.firstNum.focus():
-					index==2?this.$refs.secondNum.focus():
-					index==3?this.$refs.thirdNum.focus():
-					index==4?this.$refs.fourthNum.focus():
-					index==5?this.$refs.fiveNum.focus():''
+				var _arr = ['secondNum','thirdNum','fourthNum','fiveNum','sixNum'];
+				if(_arr[index]){
+					this.$refs[_arr[index]].focus();
 				}
+				
 			},
 			//[第二页]开始计时
 			startInterval(){
@@ -238,6 +230,7 @@
 			},
 			//[第三页]注册
 			async register(){
+				this.showFourthPage();return;
 				if(this.nickname != ''){
 					const data = {
 						'phone':this.phone,
@@ -292,6 +285,8 @@
 			'code.sixNum':function(val){
 				if(!this.isNumber(val)){
 					this.code.sixNum = '';
+				}else{
+					this.showThirdPage();//自己加，以后可以去掉
 				}
 			}
 		},
@@ -300,4 +295,221 @@
 		}
 	}
 </script>
-<style></style>
+<style scoped lang="less">
+	.wrapper{
+		background:#fff !important;
+	}
+	.top{
+		background:url('./fas.png') no-repeat left center;
+		background-size:30px 30px;
+		width:100%;
+		line-height:30px;
+		margin:10px;
+		color:#666;
+		text-indent:1.5em;
+		text-align:left;
+		cursor:pointer;
+	}
+	.main{
+		margin:30px 20px 10px 20px;
+		font-family:'Microsoft Yahei';
+	}
+	.first h1,
+	.second h1,
+	.third h1,
+	.fourth h1{
+		font-weight:normal;
+	}
+	.first{
+		p{
+			margin-top:10px;
+			span{
+				margin-top:10px;
+				color:#1e90ff;
+				cursor:pointer;
+			}
+		}
+		.phone,.native{
+			position:relative;
+			height:50px;
+			line-height:50px;
+			input{
+				font-size:16px;
+				width:70%;
+				border:0;
+				box-sizing:content-box;
+				padding-left:90px;
+				font-family:'Microsoft Yahei' !important;
+				outline:none;
+			}
+			span{
+				position:absolute;
+				top:0;
+				left:10px;
+				color:#666;
+			}
+		}
+		input.btn{
+			margin-top:50px;
+		}
+		.phone{
+			height:50px;
+			img{
+				position:absolute;
+				top:14px;
+				left:80%;
+				cursor:pointer;
+				transform:scale(0.5);
+			}
+			input{
+				border-bottom:1px solid #ccc;
+				outline:none;
+			}
+		}
+	}
+	.second{
+		p{
+			margin-top:10px;
+			width:96%;
+			color:#666;
+			letter-spacing:1px;
+			span{
+				color:orange;
+			}
+		}
+		ul{
+			margin:20px 0 20px 0;
+			display:flex;
+			li{
+				background:#eee;
+				flex:1;
+				width:30px;
+				margin-right:16px;
+				float:left;
+				list-style:none;
+				width:40px;
+				height:40px;
+				input{
+					width:100%;
+					height:100%;
+					text-align:center;
+					border:0;
+					border-bottom:1px solid #ccc;
+					outline:none;
+					&.fill{
+						border-bottom:1px solid #666;
+					}
+				}
+			}
+		}
+		p.left{
+			color:#ccc;
+		}
+		p.resend{
+			color:#1e90ff;
+			cursor:pointer;
+		}
+		.tip{
+			margin-top:60px;
+			p{
+				background:url('./fzu.png') no-repeat;
+				background-size:20px 20px;
+				padding-left:22px;
+				line-height:20px;
+				color:#666;
+				text-align:left;
+				span{
+					color:#1e90ff;
+					cursor:pointer;
+				}
+			}
+		}
+	}
+	.third{
+		p{
+			margin-top:10px;
+			color:#666;
+			width:96%;
+			letter-spacing:1px;
+		}
+		.nickname{
+			position:relative;
+			input{
+				font-size:16px;
+				width:90%;
+				margin-top:10px;
+				box-sizing:content-box;
+				font-family:'Microsoft Yahei';
+				outline:none;
+			}
+			img{
+				position:absolute;
+				top:12px;
+				left:86%;
+				cursor:pointer;
+				transform:scale(0.5);
+			}
+			input.btn{
+				margin-top:40px;
+				line-height:40px;
+				font-size:20px;
+			}
+		}
+	}
+	.fourth{
+		h1{
+			background:url('./hoy.png') no-repeat left center;
+			background-size:36px 36px;
+			padding-left:50px;
+		}
+		.info{
+			color:#666;
+			margin-top:50px;
+			font-size:20px;
+		}
+		p{
+			text-align:left;
+		}
+		p.ptop{
+			letter-spacing:1px;
+			color:#666;
+		}
+		p.qq{
+			margin-top:20px;
+			font-size:20px;
+			color:#000;
+		}
+		p.info{
+			margin-top:20px;
+			font-size:20px;
+			color:#000;
+			span{
+				color:orange;
+			}
+		}
+		input.btn{
+			line-height:40px;
+			margin-top:50px;
+			font-size:18px;
+			width:90%;
+		}
+		p.warn{
+			margin-top:20px;
+			text-align:center;
+			width:90%;
+			font-size:16px;
+		}
+	}
+	input.btn{
+		width:95%;
+		line-height:32px;
+		background:#ccc;
+		color:white;
+		cursor:not-allowed;
+		font-family:'Microsoft Yahei';
+	}
+	input.btn.enable{
+		background:#1e90ff;
+		cursor:pointer;
+	}
+</style>

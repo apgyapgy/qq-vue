@@ -14,7 +14,8 @@ const asyncComponent = (name) =>{
 }
 //异步加载组件
 const Login = asyncComponent('Login/Login'),
-      Register = asyncComponent('Register/Register')
+      Register = asyncComponent('Register/Register'),
+      Message = asyncComponent('Message/Message')
 
 export default new Router({
   routes: [
@@ -38,6 +39,13 @@ export default new Router({
       component:Register,
       meta:{
         title:'注册'
+      }
+    },{
+      path:'/message',
+      name:'Message',
+      component:Message,
+      meta:{
+        title:'消息'
       }
     }
   ]
