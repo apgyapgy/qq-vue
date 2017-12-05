@@ -84,10 +84,11 @@
 		},
 		created(){
 			//获取天气信息
-			const weather = JSON.parse(localStorage.weather);
-			const oldTime = weather ? weather.time:Date.parse(new Date())/1000;
+			const weather = localStorage.weather?JSON.parse(localStorage.weather):'';
+			var _date = this.getDate();
+			const oldTime = weather ? weather.time:_date/1000;
 			//时间差值
-			const diff = Date.parse(new Date())/1000 - oldTime;
+			const diff = this.getDate()/1000 - oldTime;
 			if(!weather || diff > 4*60*60){//超过4个小时
 				this.getWeather();
 			}else{
@@ -123,11 +124,11 @@
 					'isShowMask':false
 				})
 			},
-			touchStart(e){
+			touchstart(e){
 				this.startX = this.getTouchXY(e).X;
 				this.startY = this.getTouchXY(e).Y;
 			},
-			touchMove(e){
+			touchmove(e){
 				const X = this.getTouchXY(e).X - this.startX;
 				const Y = this.getTouchXY(e).Y - this.startY;
 				if(Math.abs(X) > 3*Math.abs(Y) && X < -30){
@@ -141,7 +142,11 @@
 					Y:e.targetTouches[0].pageY
 				}
 			},
+			getDate(){
+				return Date.parse(new Date());
+			},
 			async getWeather(){
+				console.log("获取天气，接口调通再开放!");return;
 				const {data} = await get_weather();
 				this.city = data.city;
 				this.temperature = data.temperature;
@@ -149,7 +154,7 @@
 				const weather = {
 					city:data.city,
 					temperature:data.temperature,
-					time:Date.parse(new Date())/1000
+					time:this.getDate()/1000
 				}
 				localStorage.setItem('weather',JSON.stringify(weather));
 			}
