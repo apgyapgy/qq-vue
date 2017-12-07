@@ -1,8 +1,15 @@
 import * as types from '@/store/mutations-types';
 //根级别的state
+var _userInfo = {
+	nickname:'听说',
+	signature:'走的远的，不是走的快的，是一直走的。',
+	face:'/static/images/face.jpg',
+	level:100
+};
 export const state = {
 	'loginStatus':JSON.parse(localStorage.getItem('loginStatus') || '{}'),//用户登录状态
-	'userInfo':JSON.parse(localStorage.getItem('userInfo') || '{}'),//用户登录信息
+	'userInfo':localStorage.getItem('userInfo')?JSON.parse(localStorage.userInfo):_userInfo,
+	//'userInfo':JSON.parse(localStorage.getItem('userInfo') || '{}'),//用户登录信息
 	'accounts':JSON.parse(localStorage.getItem('accounts') || '{}')  //登录过的用户
 };
 //根级别的mutations

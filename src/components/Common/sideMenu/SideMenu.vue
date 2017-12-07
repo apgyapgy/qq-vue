@@ -3,7 +3,7 @@
 		<div class="sidemenu" @touchstart="touchstart" @touchmove="touchmove" :class="{'show':isShowSideBar}">
 			<div class="top" :style="style">
 				<div class="userinfo">
-					<img src="userinfo.face" class="face" alt="">
+					<img :src="userinfo.face" class="face" alt="">
 					<span class="nickname">{{userinfo.nickname}}</span>
 					<div class="level">
 						<ul>
@@ -83,6 +83,10 @@
 			}
 		},
 		created(){
+			// this.$store.commit('SHOW_SIDEBAR',{
+			// 	'isShowSideBar':true,
+			// 	'isShowMask':true
+			// });
 			//获取天气信息
 			const weather = localStorage.weather?JSON.parse(localStorage.weather):'';
 			var _date = this.getDate();
@@ -165,8 +169,10 @@
 	.sidemenu{
 		position:absolute;
 		z-index:20;
-		background:#fff;
+		background:url('/static/images/back.jpg') no-repeat;
+		background-size:100% 100%;
 		width:0;
+		height:100%;
 		overflow:hidden;
 		box-shadow:0 0 10px gray;
 		cursor:pointer;
@@ -176,45 +182,56 @@
 		}
 		.top{
 			width:100%;
-			height:32%;
+			height:25%;
 			position:relative;
 			.userinfo{
 				position:absolute;
 				top:30%;
-				left:6%;
 				color:#fff;
 				opacity:1;
 				width:100%;
 				img.face{
+					float:left;
+					margin-left:6%;
 					width:3rem;
 					height:3rem;
 					border-radius:50%;
 					border:3px solid #fff;
 				}
 				span.nickname{
-					width:270px;
+					float:left;
+					height:3rem;
+					line-height:4rem;
 					font-size:2rem;
-					position:absolute;
-					left:60px;
 					letter-spacing:4px;
 					font-weight:lighter;
 					overflow:hidden;
+					color:#000;
+					text-align:left;
 				}
 				.level{
+					float:left;
 					clear:both;
 					width:300px;
 					overflow:hidden;
-					margin:10px 0 0 -10px;
+					margin-top:10px;
+					margin-left:6%;
+					/*margin:10px 0 0 -10px;*/
 					ul{
+						width:100%;
 						li{
 							list-style:none;
 							float:left;
-							width:18px;
-							height:18px;
+							width:20px;
+							height:20px;
+							img{
+								width:20px;
+								height:20px;
+							}
 						}
 					}
 					img.level-1{
-						transform:scale(0.5);
+						/*transform:scale(0.5);*/
 					}
 				}
 				p.sign{
@@ -222,7 +239,8 @@
 					overflow:hidden;
 					margin-top:4px;
 					font-size:14px;
-					letter-spacing:2px;
+					letter-spacing:0px;
+					color:#000;
 				}
 			}
 		}
@@ -236,6 +254,7 @@
 					height:46px;
 					line-height:46px;
 					padding-left:10px;
+					text-align:left;
 					img{
 						transform:scale(.5);
 					}
