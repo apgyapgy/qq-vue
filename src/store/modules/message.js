@@ -10,7 +10,27 @@ const state = {
 // mutations
 const mutations = {
   [types.GET_ALL_MESSAGE](state, data) {
-    state.allMessage = data.allMessage
+    //state.allMessage = data.allMessage
+    state.allMessage = [{
+          "id":2,"imgUrl":"/static/user/face/4.jpg","unread":0,
+          "message":"你试试","time":"07-28","from_user":"楚乔","type":"single"
+        },{
+          "id":6,"unread":0,"from_user":"牛客网IT笔试面试交流群",
+          "imgUrl":"/static/user/face/1.jpg","message":"宇文玥:哪里不明白？",
+          "time":"07-28","type":"group"
+        },{
+          "id":3,"imgUrl":"/static/user/face/5.jpg","unread":0,"message":"哈哈哈",
+          "time":"07-20","from_user":"马哲涵","type":"single"
+        },{
+          "id":7,"unread":0,"from_user":"14级网络工程2班",
+          "imgUrl":"/static/user/face/3.jpg",
+          "message":"马哲涵:男生的材料我现在看不到,你们走心...","time":"07-16",
+          "type":"group"
+        },{
+          "id":2,"unread":0,"from_user":"ThinkPHP技术交流中心",
+          "imgUrl":"/static/user/face/2.jpg","message":"楚乔:有谁会nodejs的吗",
+          "time":"07-15","type":"group"
+        }];
   },
   [types.UPDATE_MESSAGE](state, data) {
     const index = state.allMessage.findIndex((item) => {

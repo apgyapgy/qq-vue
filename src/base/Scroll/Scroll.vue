@@ -39,11 +39,10 @@
 			]),
 			position(){//获取state里滚动条的位置
 				const index=this.scrollPosition.findIndex((item)=>{
-		        	return item.name==this.component
-		      	});
-		      	const pos = (this.scrollPosition)[index].pos?(this.scrollPosition)[index].pos:0;
-		      	console.log("pos:",pos)
-		      	//return typeof pos ==='number' ? pos : pos[this.tabIndex-1]
+        			return item.name==this.component;
+      			});
+      			const pos = (this.scrollPosition)[index].pos;
+      			return typeof pos ==='number' ? pos : pos[this.tabIndex-1];
 			}
 		},
 		mounted(){
@@ -60,7 +59,7 @@
 				});
 				//滚动条滚动到指定位置
 				this.scrollToPosition();
-				//滚动结束时记录滚动位置到store里
+				//滚动结束时记录滚 动位置到store里
 				this.savePosition();
 			},
 			scrollToPosition(time=1){

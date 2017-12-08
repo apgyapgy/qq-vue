@@ -8,7 +8,7 @@ import http from 'http'
 
 const app = express();
 const server = http.createServer(app);
-server.listen(3000,'0.0.0.0');
+server.listen(3001,'0.0.0.0');
 //解析表单POST数据
 app.use(bodyParser.urlencoded({
 	extended:true

@@ -15,7 +15,11 @@ const asyncComponent = (name) =>{
 //异步加载组件
 const Login = asyncComponent('Login/Login'),
       Register = asyncComponent('Register/Register'),
-      Message = asyncComponent('Message/Message')
+      Message = asyncComponent('Message/Message'),
+      ChatOne = asyncComponent('Message/ChatOne'),
+      ChatGroup = asyncComponent("Message/ChatGroup"),
+      ChatSetting = asyncComponent("Message/ChatSetting"),
+      Profile = asyncComponent('User/profile')
 
 export default new Router({
   routes: [
@@ -47,6 +51,20 @@ export default new Router({
       meta:{
         title:'消息'
       }
+    },{
+      path:'/chat_one/:user_id',
+      name:'chat_one',
+      component:ChatOne
+    },{
+      path:'/chat_one/:user_id/set/profile',
+      component:Profile
+    },{
+      path:'/chat_one/:user_id/profile',
+      component:Profile
+    },{
+      path:'/chat_group/:group_id',
+      name:'chat_group',
+      component:ChatGroup
     }
   ]
 })
