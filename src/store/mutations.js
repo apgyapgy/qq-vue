@@ -1,11 +1,8 @@
 import * as types from '@/store/mutations-types';
 //根级别的state
-var _userInfo = {
-	nickname:'听说',
-	signature:'走的远的，不是走的快的，是一直走的。',
-	face:'/static/images/face.jpg',
-	level:100
-};
+localStorage.loginStatus = '{"type":"qq","value":"986992484","isLogin":1,"userId":1}';
+localStorage.userInfo = '{"id":1,"user_id":1,"nick_name":"莫知我哀","signature":"楚乔传","face":"/static/user/face/0.jpg","sex":"男","age":21,"xingzuo":"处女座","place":"江西","favor":"娱乐/艺术/表演","level":50,"profile_bg":"/static/user/bg/2.jpeg","login_day":1045,"phone":"18296764976","status":1,"qq":"986992484","vip":2,"accert":"1.4倍加速中"}';
+localStorage.accounts = '[{"id":1,"user_id":1,"nick_name":"莫知我哀","signature":"楚乔传","face":"/static/user/face/0.jpg","sex":"男","age":21,"xingzuo":"处女座","place":"江西","favor":"娱乐/艺术/表演","level":50,"profile_bg":"/static/user/bg/2.jpeg","login_day":1045,"phone":"18296764976","status":1,"qq":"986992484","vip":2,"accert":"1.4倍加速中"}]';
 export const state = {
 	'loginStatus':JSON.parse(localStorage.getItem('loginStatus') || '{}'),//用户登录状态
 	'userInfo':localStorage.getItem('userInfo')?JSON.parse(localStorage.userInfo):_userInfo,

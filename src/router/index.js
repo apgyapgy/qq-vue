@@ -19,7 +19,10 @@ const Login = asyncComponent('Login/Login'),
       ChatOne = asyncComponent('Message/ChatOne'),
       ChatGroup = asyncComponent("Message/ChatGroup"),
       ChatSetting = asyncComponent("Message/ChatSetting"),
-      Profile = asyncComponent('User/profile')
+      Profile = asyncComponent('User/Profile'),
+      Setting = asyncComponent('Setting/Setting'),
+      AccontSet = asyncComponent('Setting/AccontSet'),
+      AddUser = asyncComponent('Setting/AddUser')
 
 export default new Router({
   routes: [
@@ -56,6 +59,10 @@ export default new Router({
       name:'chat_one',
       component:ChatOne
     },{
+      path:'/chat_one/:user_id/set',
+      name:'chat_set',
+      component:ChatSetting
+    },{
       path:'/chat_one/:user_id/set/profile',
       component:Profile
     },{
@@ -65,6 +72,21 @@ export default new Router({
       path:'/chat_group/:group_id',
       name:'chat_group',
       component:ChatGroup
+    },{
+      path: '/profile/:user_id',
+      component: Profile
+    },{
+      path:'/setting',
+      name:'setting',
+      component:Setting
+    },{
+      path:'/accont_set',
+      name:'accont_set',
+      component:AccontSet
+    },{
+      path:'/accont_set/add_user',
+      name:'add_user',
+      component:AddUser
     }
   ]
 })

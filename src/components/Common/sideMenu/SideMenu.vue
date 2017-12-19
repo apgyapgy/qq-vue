@@ -54,7 +54,7 @@
 			</div>
 			<div class="setting">
 				<ul>
-					<li @click="$router.push('/setting')">
+					<li @click.stop="$router.push('/setting')">
 						<img src="./qq_setting_setting.png" alt="">
 						<span>设置</span>
 					</li>
@@ -66,8 +66,8 @@
 				</ul>
 				<p class="weather">{{city}}<span>{{temperature}}<sup>o</sup></span></p>
 			</div>
-			<div class="mask" v-show="isShowMask" @click="hideSideBar"></div>
 		</div>
+		<div class="mask" v-show="isShowMask" @click="hideSideBar"></div>
 	</div>
 </template>
 <script>
@@ -241,6 +241,7 @@
 					font-size:14px;
 					letter-spacing:0px;
 					color:#000;
+					text-indent:6%;
 				}
 			}
 		}
@@ -283,9 +284,15 @@
 						margin-left:14px;
 					}
 					img{
+						float:left;
 						transform:scale(.5);
 						margin-bottom:18px;
 						margin-right:-10px;
+					}
+					span{
+						float:left;
+						height:60px;
+						line-height:50px;
 					}
 				}
 			}
@@ -315,11 +322,12 @@
 	}
 	.mask{
 		position:absolute;
+		left:0;
+		top:0;
 		width:100%;
 		height:100%;
 		cursor:pointer;
-		bacground:#000;
-		opacity:.3;
+		background:rgba(0,0,0,.3);
 		z-index:19;
 	}
 </style>

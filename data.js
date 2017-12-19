@@ -1,0 +1,116 @@
+1
+{
+	"code":1,
+	"data":{
+		"singleMessage":[{
+			"id":2,"imgUrl":"/static/user/face/4.jpg",
+			"unread":0,"message":"你试试","time":1501229571,
+			"from_user":"楚乔"
+		},{
+			"id":3,"imgUrl":"/static/user/face/5.jpg","unread":0,
+			"message":"哈哈哈","time":1500520313,"from_user":"马哲涵"
+		}],
+		"groupMessage":[{
+			"id":2,"unread":0,"from_user":"ThinkPHP技术交流中心",
+			"imgUrl":"/static/user/face/2.jpg",
+			"message":"楚乔:有谁会nodejs的吗","time":1500122660
+		},{
+			"id":6,"unread":0,"from_user":"牛客网IT笔试面试交流群",
+			"imgUrl":"/static/user/face/1.jpg",
+			"message":"宇文玥:哪里不明白？","time":1501229199
+		},{
+			"id":7,"unread":0,"from_user":"14级网络工程2班",
+			"imgUrl":"/static/user/face/3.jpg",
+			"message":"马哲涵:男生的材料我现在看不到,你们走心...",
+			"time":1500197438
+		}]
+	}
+}
+6
+{
+	"code":1,
+	"data":{
+		"message":[{
+			"from_user":2,
+			"message":"楚乔:电商项目中发模板邮件这种业务有谁了解吗",
+			"time":1500007000,"face":"/static/user/face/4.jpg",
+			"nick_name":"楚乔"
+		},{
+			"from_user":3,"message":"马哲涵:邮件是html格式",
+			"time":1500008000,"face":"/static/user/face/5.jpg",
+			"nick_name":"马哲涵"
+		},{
+			"from_user":2,
+			"message":"楚乔:嗯，那个能实现。老板给两张表就不管了，我不太清楚具体的业务流程之类",
+			"time":1500010000,"face":"/static/user/face/4.jpg",
+			"nick_name":"楚乔"
+		},{
+			"from_user":2,"message":"楚乔:还是不太明白啊",
+			"time":1500902861,"face":"/static/user/face/4.jpg",
+			"nick_name":"楚乔"
+		},{
+			"from_user":1,"message":"宇文玥:哪里不明白？",
+			"time":1501229199,
+			"face":"/static/user/face/0.jpg","nick_name":"宇文玥"
+		}],
+		"info":{
+			"id":6,"group_name":"牛客网IT笔试面试交流群",
+			"group_avator":"/static/user/face/1.jpg",
+			"nick_name":"宇文玥"
+		},
+		"groupMember":[2,3]
+	}
+}
+3
+{
+	"code":1,
+	"data":{
+		"message":[{
+			"from_user":3,"to_user":1,"message":"技术栈会更多一点",
+			"time":1500390000,"face":"/static/user/face/5.jpg"
+		},{
+			"from_user":3,"to_user":1,"message":"哈哈哈",
+			"time":1500520313,"face":"/static/user/face/5.jpg"
+		}],
+		"info":{
+			"device":1,"beizhu":"马哲涵",
+			"face":"/static/user/face/5.jpg"
+		},
+		"info1":{"beizhu":"宇文玥"}
+	}
+}
+7
+{
+	"code":1,
+	"data":{
+		"message":[{
+			"from_user":3,
+			"message":"马哲涵:男生的材料我现在看不到,你们走心...",
+			"time":1500197438,"face":"/static/user/face/5.jpg",
+			"nick_name":"马哲涵"
+		}],
+		"info":{
+			"id":7,"group_name":"14级网络工程2班",
+			"group_avator":"/static/user/face/3.jpg",
+			"nick_name":"宇文玥"
+		},
+		"groupMember":[3]
+	}
+}
+2
+{
+	"code":1,
+	"data":{
+		"message":[{
+			"from_user":2,"message":"楚乔:有谁会nodejs的吗",
+			"time":1500122660,"face":"/static/user/face/4.jpg",
+			"nick_name":"楚乔"
+		}],
+		"info":{
+			"id":2,"group_name":"ThinkPHP技术交流中心",
+			"group_avator":"/static/user/face/2.jpg",
+			"nick_name":"宇文玥"
+		},
+		"groupMember":[2]
+	}
+}

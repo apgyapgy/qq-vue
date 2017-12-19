@@ -17,7 +17,8 @@
 		<VScroll :isScrollToBottom='isScrollToBottom' :data="dataList.message" component="chatOne">
 			<div class="chat">
 				<ul>
-					<li v-for="item in dataList.message" :class="{'time':item.type=='time','me':item.type=='message'&&item.content.from='other'}">
+					<li v-for="item in dataList.message" 
+						:class="{'time':item.type=='time','me':item.type=='message'&&item.content.from=='me','other':item.type=='message'&&item.content.from=='other'}">
 						<template v-if="item.type=='message'">
 							<img :src="item.content.faceUrl" :class="{'me':item.content.from=='me','other':item.content.from=='other'}" @click="$router.push(`/chat_one/${item.content.user_id}/profile`)" alt="">
 							<p class="message">{{item.content.message}}</p>
@@ -57,18 +58,19 @@
 				dataList:{
 					user_id:'',//别人的id
 					chatWith:'正在加载中...',//自己对别人的备注
-					status:'',//别人的设备状态 
+					status:'4',//别人的设备状态 
 					user_face:'',//别人的头像
 					beizhu:'',//别人对自己的备注
 					message:[] //消息
 				},
 				btnInfo:'发送',
-				iconName:['ptt','image','ptv','camera','hongbao','flash','emotion','plus']
+				iconName:['ptt','image','ptv','camera','hongbao','flash','emotion','plus'],
+				userId:1
 			}
 		},
 		computed:{
 			...mapGetters([
-				'userId',
+				//'userId',
 				'userInfo',
 				'allMessage'
 			]),
@@ -77,9 +79,9 @@
 			}
 		},
 		mounted(){
-			this.dataList.user_id == this.$route.params.user_id;
+			this.dataList.user_id = this.$route.params.user_id;
 			//this.resetAndGetUnread(this.dataList.user_id);
-			//this.getMessage(this.userId,this.dataList.user_id);
+			this.getMessage(this.userId,this.dataList.user_id);
 			//this.updateBySocket();
 		},
 		components:{
@@ -107,7 +109,29 @@
 			},
 			//获取消息
 			async getMessage(userId,otherUserId){
-				const {data} = await api.get_message(userId,otherUserId);
+				//const {data} = await api.get_message(userId,otherUserId);
+				const data = {
+						"message":[
+						{
+							"from_user":2,"to_user":1,
+							"message":"燕洵他遭受得太多了，没有人在他身边，他是需要我的",
+							"time":1500520300,"face":"/static/user/face/4.jpg"
+						},{
+							"from_user":1,"to_user":2,"message":"我也需要你",
+							"time":1500520400,"face":"/static/user/face/0.jpg"
+						},{
+							"from_user":2,"to_user":1,"message":"别这样，不然待会屏蔽你了",
+							"time":1500520500,"face":"/static/user/face/4.jpg"
+						},{
+							"from_user":1,"to_user":2,"message":"你试试","time":1501229571,
+							"face":"/static/user/face/0.jpg"
+						}
+						],
+						"info":{
+							"device":3,"beizhu":"楚乔","face":"/static/user/face/4.jpg"
+						},
+						"info1":{"beizhu":"宇文玥"}
+					};
 				const {info,info1,message} = data;
 				const {device,beizhu,face} = info;//别人的消息
 				this.dataList.status = device ==0?'离线':device==1?'手机在线':device==2?'3G在线':device==3?'4G在线':device==4?'Wifi在线':'电脑在线';
@@ -191,7 +215,7 @@
 				this.dataList.message.push(data);
 			},
 			//是否要添加时间消息
-			isAddTimeMessage(flag,currentTime,privTime=''){
+			isAddTimeMessage(flag,currentTime,prevTime=''){
 				if(flag){
 					//当flag为真，需要比较判断，才能确定是否要添加时间
 					const seprator = 30*60;//时间间隔基准，半个小时
@@ -199,13 +223,13 @@
 						//当下一条消息和这条消息的时间间隔大于30分钟，才添加时间
 						this.dataList.message.push({
 							type:'time',
-							content:parseChatTime(currentTime);
+							content:parseChatTime(currentTime)
 						});
 					}else{
 						//当flag为假时，是必须要添加时间消息的
 						this.dataList.message.push({
 							type:'time',
-							content:parseChatTime(currentTime);
+							content:parseChatTime(currentTime)
 						});
 					}
 				}
@@ -213,7 +237,7 @@
 			//返回时更新状态
 			back(){
 				//这里不需要await，不然可能会卡
-				api.update_enter_chat(this.userId,this.dataList.user_id);
+				//api.update_enter_chat(this.userId,this.dataList.user_id);
 				this.$router.back();
 			},
 			//socket更新消息
