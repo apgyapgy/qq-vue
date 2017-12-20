@@ -1,6 +1,6 @@
 <template>
 	<!-- 主页头部 -->
-	<div class="header">
+	<div class="vheader">
 		<div class="face" @click="showSidebar" :style="style"></div>
 		<div>{{title}}</div>
 		<div class="cursor" :class="{'add':currentTab==1}" @click="addFriend">{{action}}</div>
@@ -8,7 +8,6 @@
 </template>
 <script>
 	export default{
-		name:'head',
 		props:['currentTab'],
 		data(){
 			return{
@@ -42,7 +41,7 @@
 	}
 </script>
 <style lang="less" scoped>
-	.header{
+	.vheader{
 		display:flex;
 		flex-direction:row;
 		justify-content:space-between;

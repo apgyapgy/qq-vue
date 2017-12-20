@@ -22,17 +22,22 @@ const Login = asyncComponent('Login/Login'),
       Profile = asyncComponent('User/Profile'),
       Setting = asyncComponent('Setting/Setting'),
       AccontSet = asyncComponent('Setting/AccontSet'),
-      AddUser = asyncComponent('Setting/AddUser')
+      AddUser = asyncComponent('Setting/AddUser'),
+      Boot = asyncComponent('Welcome/Boot'),
+      Welcome = asyncComponent('Welcome/Welcome'),
+      Social = asyncComponent('Social/Social'),
+      Friend = asyncComponent('Friend/Friend')
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
-      meta:{
-      	title:'HelloWorld'
-      }
+      name: 'boot',
+      component: Boot
+    },{
+      path:'/welcome',
+      name:'welcome',
+      component:Welcome
     },{
       path:'/login',
       name:'Login',
@@ -87,6 +92,14 @@ export default new Router({
       path:'/accont_set/add_user',
       name:'add_user',
       component:AddUser
+    },{
+      path:'/social',
+      name:'social',
+      component:Social
+    },{
+      path:'/friend',
+      name:'friend',
+      component:Friend
     }
   ]
 })

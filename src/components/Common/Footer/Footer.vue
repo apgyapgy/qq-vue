@@ -1,6 +1,6 @@
 <template>
 	<!-- 主页面底部 -->
-	<div class="footer">
+	<div class="vfooter">
 		<div class="item" @click="$router.push('/message')">
 			<img :src="currentTab==1?iconUrl.message_selected:iconUrl.message" alt="">
 			<span :class="{'blue':currentTab==1}">消息</span>
@@ -17,7 +17,6 @@
 </template>
 <script>
 	export default{
-		name:'footer',
 		props:['currentTab'],
 		data(){
 			return{
@@ -34,7 +33,7 @@
 	}
 </script>
 <style scoped lang="less">
-	.footer{
+	.vfooter{
 		position:absolute;
 		bottom:0;
 		width:100%;
