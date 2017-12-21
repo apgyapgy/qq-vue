@@ -3,7 +3,7 @@
 	<div class="wrapper">
 		<VAsideMenu></VAsideMenu>
 		<VHeader :currentTab="currentTab"></VHeader>
-		<div class="padding_head"></div>
+		<!-- <div class="padding_head"></div> -->
 		<VSearch placeholder="大家都在搜：楚乔传"></VSearch>
 		<div class="flex">
 			<div class="item">
