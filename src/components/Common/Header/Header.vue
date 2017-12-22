@@ -51,7 +51,7 @@
 		color:white;
 		font-size:18px;
 		letter-spacing:2px;
-		position:absolute;
+		position:fixed;
 		top:0;
 		width:100%;
 		z-index:3;

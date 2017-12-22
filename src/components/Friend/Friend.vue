@@ -3,7 +3,8 @@
 	<div class="wrapper">
 		<VAsideMenu></VAsideMenu>
 		<VHeader :currentTab="currentTab"></VHeader>
-		<VScroll :data="dataList.friend" :isHeightChange="isHeightChange" component="friend" :tabIndex="tabIndex">
+		<VScroll :data="dataList.friends" :isHeightChange="isHeightChange" component="friend" :tabIndex="tabIndex">
+			<Padding></Padding>
 			<VSearch placeholder="搜索"></VSearch>
 			<p class="newFriends" @click="$router.push('/friend/new')">新朋友</p>
 			<div class="tab">
@@ -16,8 +17,8 @@
 			</div>
 			<div class="main">
 				<!-- 好友 -->
-				<div class="friends" v=show="tabIndex==1">
-					<ul class="level-1" v-for="(item,index) in dataList.friend">
+				<div class="friends" v-show="tabIndex==1">
+					<ul class="level-1" v-for="(item,index) in dataList.friends">
 						<li class="li-1" @click="toggle(index,1)" :class="{'click':status.friend[index]==1}">
 							{{item.name}}
 							<span>{{item.online}}/{{item.members.length}}</span>
@@ -118,6 +119,7 @@
 				</div>
 			</div>
 		</VScroll>
+		<Padding></Padding>
 		<VFooter :currentTab='currentTab'></VFooter>
 	</div>
 </template>
@@ -127,6 +129,7 @@
 	import VFooter from '@/components/Common/Footer/Footer';
 	import VSearch from '@/base/Search/Search';
 	import VScroll from '@/base/Scroll/Scroll';
+	import Padding from '@/components/Common/Padding/Padding'
 	import {mapGetters} from 'vuex';
 	export default{
 		data(){
@@ -188,7 +191,7 @@
 			}
 		},
 		components:{
-			VAsideMenu,VHeader,
+			VAsideMenu,VHeader,Padding,
 			VFooter,VScroll,VSearch
 		},
 		computed:{
@@ -216,6 +219,7 @@
 		methods:{
 			changeTab(tabIndex){
 				this.$store.commit('TAB_INDEX',tabIndex);
+				console.log("dataList:",this.dataList)
 			},
 			toggle(index,type){
 				//通过数据来控制展开和收缩，实现图片懒加载
@@ -259,7 +263,7 @@
 			overflow:hidden;
 			font-size:16px;
 			.item{
-				margin-left:7%;
+				margin-left:4%;
 				letter-spacing:1px;
 				&.first{
 					margin-left:0;
@@ -267,11 +271,6 @@
 				&.blue{
 					border-bottom:3px solid #7db1f8;
 					color:#7db1f8;
-				}
-			}
-			@media screen and (max-width:769px) and (min-width:532px){
-				.item{
-					margin-left:6%;
 				}
 			}
 			@media screen and (max-width:531px){
@@ -284,7 +283,7 @@
 		}
 	}
 	/*好友，群，多人聊天，设备*/
-	.friends,.groups,.chats,.device,.address-list,.fooicial-account{
+	.friends,.groups,.chats,.device,.address-list,.official-account{
 		background:#fff;
 		ul.level-1{
 			width:100%;

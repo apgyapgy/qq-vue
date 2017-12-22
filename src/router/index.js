@@ -26,7 +26,12 @@ const Login = asyncComponent('Login/Login'),
       Boot = asyncComponent('Welcome/Boot'),
       Welcome = asyncComponent('Welcome/Welcome'),
       Social = asyncComponent('Social/Social'),
-      Friend = asyncComponent('Friend/Friend')
+      Friend = asyncComponent('Friend/Friend'),
+      FriendAdd = asyncComponent('Friend/addFriend'),
+      FriendNew = asyncComponent('Friend/newFriend'),
+      FriendApply = asyncComponent('Friend/applyFriend'),
+      FriendSearch = asyncComponent('Friend/searchFriend'),
+      FriendSetting = asyncComponent('Friend/settingFriend')
 
 export default new Router({
   routes: [
@@ -100,6 +105,32 @@ export default new Router({
       path:'/friend',
       name:'friend',
       component:Friend
+    },{
+      path:'/friend/:user_id/profile',
+      component:Profile
+    },{
+      path:'/friend/add',
+      name:'friend_add',
+      component:FriendAdd
+    },{
+      path:'/friend/new',
+      name:'friend_new',
+      component:FriendNew
+    },{
+      path:'/friend/apply/:id',
+      name:'friend_apply',
+      component:FriendApply
+    },{
+      path:'/friend/apply/:user_id/profile',
+      component:Profile
+    },{
+      path:'/friend/setting/:apply_id',
+      name:'friend_setting',
+      component:FriendSetting
+    },{
+      path:'/friend/add/search',
+      name:'friend_search',
+      component:FriendSearch
     }
   ]
 })
